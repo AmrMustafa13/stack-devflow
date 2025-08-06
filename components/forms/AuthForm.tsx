@@ -41,8 +41,8 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handleSubmit: SubmitHandler<T> = async () => {
-    // TODO: Authenticate User
+  const handleSubmit: SubmitHandler<z.infer<typeof schema>> = async (data) => {
+    await onSubmit(data as T);
   };
 
   const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
@@ -85,7 +85,7 @@ const AuthForm = <T extends FieldValues>({
         >
           {form.formState.isSubmitting
             ? buttonText === "Sign In"
-              ? "Signin In..."
+              ? "Signing In..."
               : "Signing Up..."
             : buttonText}
         </Button>
