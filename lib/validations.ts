@@ -2,8 +2,10 @@ import { z } from "zod";
 
 export const SignInSchema = z.object({
   email: z
-    .email({ message: "Please provide a valid email address." })
-    .min(1, { message: "Email is required" }),
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Please provide a valid email address." }),
+
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters long. " })
@@ -18,6 +20,7 @@ export const SignUpSchema = z.object({
     .regex(/^[a-zA-Z0-9_]+$/, {
       message: "Username can only contain letters, numbers, and underscores.",
     }),
+
   name: z
     .string()
     .min(1, { message: "Name is required." })
@@ -25,9 +28,12 @@ export const SignUpSchema = z.object({
     .regex(/^[a-zA-Z\s]+$/, {
       message: "Name can only contain letters and spaces.",
     }),
+
   email: z
-    .email({ message: "Please provide a valid email address." })
-    .min(1, { message: "Email is required." }),
+    .string()
+    .min(1, { message: "Email is required." })
+    .email({ message: "Please provide a valid email address." }),
+
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters long." })
